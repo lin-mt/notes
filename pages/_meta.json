@@ -1,0 +1,17 @@
+{
+  "index": {
+    "title": "首页",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    }
+  },
+  "pulsar": {
+    "title": "Pulsar",
+    "type": "page"
+  },
+  "about": {
+    "title": "About",
+    "type": "page"
+  }
+}
