@@ -181,6 +181,18 @@ tar xvfz apache-pulsar-3.1.1-bin.tar.gz && cd apache-pulsar-3.1.1
 ./bin/pulsar-admin clusters update cluster-a --url http://192.168.10.101:8080
 ```
 
+### zookeeper 启动失败
+
+将服务器本地挂载路径的文件夹权限改为 `777`
+
+```bash copy
+chmod 777 ./data/zookeeper
+```
+
+```bash copy
+chmod 777 ./data/bookkeeper
+```
+
 ## 参考内容
 
 [Run a Pulsar cluster locally with Docker Compose](https://pulsar.apache.org/docs/3.1.x/getting-started-docker-compose/)
