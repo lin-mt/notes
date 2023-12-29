@@ -95,6 +95,7 @@ services:
       - managedLedgerDefaultWriteQuorum=1
       - managedLedgerDefaultAckQuorum=1
       - advertisedAddress=broker
+      # 如果不是在本地开发，则此处的 IP 改为 broker 服务器所在的 IP
       - advertisedListeners=external:pulsar://127.0.0.1:6650
       - PULSAR_MEM=-Xms512m -Xmx512m -XX:MaxDirectMemorySize=256m
     depends_on:
@@ -117,6 +118,8 @@ services:
     depends_on:
       broker:
         condition: service_started
+    networks:
+      - pulsar
     environment:
       SPRING_CONFIGURATION_FILE: /pulsar-manager/pulsar-manager/application.properties
 ```
