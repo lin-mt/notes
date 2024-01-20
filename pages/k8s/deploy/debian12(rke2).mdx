@@ -151,7 +151,7 @@ root@node10:~/rke2-artifacts# cat /var/lib/rancher/rke2/server/token
 K107ac80c73d5f9b1b41cdf8964034f8e7ea2d5b9d6439914ef2ada1279f73e50a4::server:2630492423c420d92260253874e9b60b
 ```
 `node11`、`node12`加入集群
-```shell copy filename="node11、node12" {3,4}
+```shell copy filename="node11、node12" {3-5}
 mkdir -p /etc/rancher/rke2
 cat > /etc/rancher/rke2/config.yaml <<EOF
 server: https://10.211.55.10:9345
