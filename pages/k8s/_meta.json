@@ -1,4 +1,5 @@
 {
   "index": "介绍",
-  "deploy": "部署"
+  "deploy": "部署",
+  "component-deploy": "组件部署"
 }
