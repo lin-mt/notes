@@ -61,6 +61,21 @@ kubectl -n cattle-system get pod
 kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{ .data.bootstrapPassword|base64decode}}{{ "\n" }}'
 ```
 
+## 升级 Rancher
+
+导出安装时的自定义信息：
+```shell copy
+helm get values rancher -n cattle-system -o yaml > values.yaml
+```
+升级 Rancher
+```shell copy
+helm upgrade rancher rancher-<CHART_REPO>/rancher \
+  --namespace cattle-system \
+  -f values.yaml \
+  --version=2.6.8
+```
+
+
 
 ## 参考
 
