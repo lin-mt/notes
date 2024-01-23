@@ -75,6 +75,22 @@ helm upgrade rancher rancher-<CHART_REPO>/rancher \
   --version=2.6.8
 ```
 
+## 重置管理员密码
+
+Docker 重置管理员密码
+```shell copy
+$ docker exec -ti <container_id> reset-password
+New password for default administrator (user-xxxxx):
+<new_password>
+```
+
+Kubernetes 安装 (Helm):
+```shell copy
+$ KUBECONFIG=./kube_config_cluster.yml
+$ kubectl --kubeconfig $KUBECONFIG -n cattle-system exec $(kubectl --kubeconfig $KUBECONFIG -n cattle-system get pods -l app=rancher --no-headers | head -1 | awk '{ print $1 }') -c rancher -- reset-password
+New password for default administrator (user-xxxxx):
+<new_password>
+```
 
 
 ## 参考
@@ -84,3 +100,5 @@ helm upgrade rancher rancher-<CHART_REPO>/rancher \
 [Install/Upgrade Rancher on a Kubernetes Cluster](https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster)
 
 [cert-manager Release](https://github.com/cert-manager/cert-manager/releases)
+
+[Upgrades](https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/install-upgrade-on-a-kubernetes-cluster/upgrades)
