@@ -42,6 +42,10 @@ helm install cert-manager ./cert-manager-v1.13.3.tgz \
 ```
 
 ### 安装 Rancher
+创建命名空间
+```shell copy
+kubectl create namespace cattle-system
+```
 ```shell copy {1,3,4}
 helm install rancher ./rancher-2.7.9.tgz \
   --namespace cattle-system \
