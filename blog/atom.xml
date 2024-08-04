@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://lin-mt.github.io/notes/blog</id>
+    <title>Notes Blog</title>
+    <updated>2024-08-04T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://lin-mt.github.io/notes/blog"/>
+    <subtitle>Notes Blog</subtitle>
+    <icon>https://lin-mt.github.io/notes/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Start]]></title>
+        <id>https://lin-mt.github.io/notes/blog/2024/08/04</id>
+        <link href="https://lin-mt.github.io/notes/blog/2024/08/04"/>
+        <updated>2024-08-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[First Blog.]]></summary>
+        <content type="html"><![CDATA[<p>First Blog.</p>]]></content>
+        <author>
+            <name>lin-mt</name>
+            <uri>https://github.com/lin-mt</uri>
+        </author>
+    </entry>
+</feed>

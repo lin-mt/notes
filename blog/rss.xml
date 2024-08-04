@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Notes Blog</title>
+        <link>https://lin-mt.github.io/notes/blog</link>
+        <description>Notes Blog</description>
+        <lastBuildDate>Sun, 04 Aug 2024 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>zh-Hans</language>
+        <item>
+            <title><![CDATA[Start]]></title>
+            <link>https://lin-mt.github.io/notes/blog/2024/08/04</link>
+            <guid>https://lin-mt.github.io/notes/blog/2024/08/04</guid>
+            <pubDate>Sun, 04 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[First Blog.]]></description>
+            <content:encoded><![CDATA[<p>First Blog.</p>]]></content:encoded>
+        </item>
+    </channel>
+</rss>
