@@ -73,6 +73,11 @@ const config: Config = {
               label: 'OpenCV',
               type: 'docSidebar',
               sidebarId: 'javaOpenCV',
+            },
+            {
+              label: 'Dubbo',
+              type: 'docSidebar',
+              sidebarId: 'devOpsDubbo',
             }
           ]
         },
