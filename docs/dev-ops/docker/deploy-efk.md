@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# 部署 ELK
+# 部署 EFK
 
 ## Spring Boot日志配置
 
