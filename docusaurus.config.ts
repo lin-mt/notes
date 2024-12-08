@@ -12,13 +12,13 @@ const config: Config = {
   url: 'https://lin-mt.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/notes',
+  baseUrl: '/notes/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'lin-mt', // Usually your GitHub org/user name.
   projectName: 'notes', // Usually your repo name.
-  trailingSlash: false,
+
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
@@ -46,7 +46,17 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
+          feedOptions: {
+            type: ['rss', 'atom'],
+            xslt: true,
+          },
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/lin-mt/notes/tree/main/',
+          // Useful options to enforce blogging best practices
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -124,7 +134,7 @@ const config: Config = {
           items: [
             {
               label: 'Github',
-              href: 'https://github.com/lin-mt/notes/issue',
+              href: 'https://github.com/lin-mt',
             }
           ],
         },
