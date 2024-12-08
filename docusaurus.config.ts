@@ -4,8 +4,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Notes',
-  tagline: '记想记的东西～',
+  title: 'Notes and blogs',
+  tagline: '',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -87,7 +87,12 @@ const config: Config = {
             {
               label: 'Dubbo',
               type: 'docSidebar',
-              sidebarId: 'devOpsDubbo',
+              sidebarId: 'javaDubbo',
+            },
+            {
+              label: 'Pulsar',
+              type: 'docSidebar',
+              sidebarId: 'javaPulsar',
             }
           ]
         },
