@@ -127,7 +127,7 @@ Authentication authResult = authenticationManager.authenticate(authentication);
 
 ### 方案二：自己定义一个 key，将用户信息存到 Redis
 
-在服务消费者发起请求的时候，自己定义一个 Redis key，将用户信息存储到 Redis，然后再将这个 key 传递给服务提供者，服务提供者再去 Redis 获取用户信息。这个方案是上篇遇到的那个面试官提出的，面试的时候没仔细想这个方案的好坏，等面试结束的时候发现这个方案还是有问题的。
+在服务消费者发起请求的时候，自己定义一个 Redis key，将用户信息存储到 Redis，然后再将这个 key 传递给服务提供者，服务提供者再去 Redis 获取用户信息。
 
 首先呢，Redis 已经存有一份用户信息了，再存一份，属实没必要，而且还需要维护两份用户信息，保持两份用户信息的一致。再者，这个 Redis key 的过期时间要怎么设置？设置一个固定的时间？这个是不行的，因为在整个系统中，用户有一个统一的 token 过期时间，如果自定义的 Redis key 时间是固定的，就会出现 token 已经过期，但是服务提供者无法知晓当前用户已经过期，因为在 Redis key 还未过期的时候它仍然能获取用户信息，这已经破坏了系统的整体性，那么就得动态去计算这个 Redis key 的过期时间。
 
@@ -151,8 +151,8 @@ Authentication authResult = authenticationManager.authenticate(authentication);
 在文件夹`src/main/java/resources/META-INF/dubbo`下创建文件名为`org.apache.dubbo.rpc.Filter`的纯文本文件，文件内容为：
 
 ```text
-token-value-consumer=com.gitee.quiet.service.dubbo.filter.consumer.AccessTokenValueFilter
-token-value-provider=com.gitee.quiet.service.dubbo.filter.provider.AccessTokenValueFilter
+token-value-consumer=com.github.quiet.service.dubbo.filter.consumer.AccessTokenValueFilter
+token-value-provider=com.github.quiet.service.dubbo.filter.provider.AccessTokenValueFilter
 ```
 
 #### 注册这两个 Filter
@@ -235,7 +235,7 @@ public class QuietSecurityContext implements SecurityContext {
 
 # Filter 实现
 
-`com.gitee.quiet.service.dubbo.filter.consumer.AccessTokenValueFilter`
+`com.github.quiet.service.dubbo.filter.consumer.AccessTokenValueFilter`
 
 ```java
 @Activate(group = CommonConstants.CONSUMER)
@@ -262,7 +262,7 @@ public class AccessTokenValueFilter implements Filter {
 }
 ```
 
-`com.gitee.quiet.service.dubbo.filter.provider.AccessTokenValueFilter`
+`com.github.quiet.service.dubbo.filter.provider.AccessTokenValueFilter`
 
 ```java
 @Activate(group = CommonConstants.PROVIDER)
