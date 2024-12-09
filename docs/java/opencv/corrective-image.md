@@ -2,6 +2,14 @@
 
 在矫正图片之前需要先[加载 OpenCV 库](using-opencv-in-spring-boot.md)
 
+原图示例：
+
+![](./assets/corrective-image/location-example.png)
+
+矫正图示例（定位点布局位置相同即可）：
+
+![](./assets/corrective-image/corrective.png)
+
 ## 流程概要
 
 1. 明确定位点的样式，比如定位点的长、宽、像素信息等。
@@ -57,7 +65,7 @@ public class Location {
 ```java title="OpenCvUtils.java"
 
   private static final int MINIMUM_SIMILARITY_COORDINATE_DIFFERENCE = 300;
-  private static final List<Integer> K_SIZES = List.of(1, 3, 5, 7, 9, 11, 13, 15);
+  private static final List<Integer> K_SIZES = List.of(3, 5, 7, 9, 11, 13, 15);
 
   /**
    * 获取定位点
