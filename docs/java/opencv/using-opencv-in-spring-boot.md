@@ -19,7 +19,7 @@ sidebar_position: 2
 
 ## Spring Boot 添加 OpenCV 库
 
-1. 将 jar 文件放入项目的 `resources/lib` 文件夹下
+1. 将 `opencv\build\java\opencv-{v}.jar` 文件放入项目的 `resources/lib` 文件夹下
 2. `pom.xml` 添加依赖：
 
 ```xml title="pom.xml"

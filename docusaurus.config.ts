@@ -80,6 +80,11 @@ const config: Config = {
           position: 'right',
           items: [
             {
+              label: 'Spring Boot',
+              type: 'docSidebar',
+              sidebarId: 'javaSpringBoot',
+            },
+            {
               label: 'OpenCV',
               type: 'docSidebar',
               sidebarId: 'javaOpenCV',
