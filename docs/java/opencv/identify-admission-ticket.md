@@ -1,5 +1,7 @@
 # 识别准考证号
 
+在识别准考证号之前需要先[加载 OpenCV 库](using-opencv-in-spring-boot.md)
+
 识别示例：
 
 ![](./assets/identify-admission-ticket/admission-ticket.png)
