@@ -6,7 +6,7 @@
 
 ![](./assets/corrective-image/location-example.png)
 
-矫正图示例（定位点布局位置相同即可）：
+矫正图示例（定位点位置相同即可）：
 
 ![](./assets/corrective-image/corrective.png)
 
@@ -28,12 +28,12 @@
 - 一般来说，ksize 的选择取决于图像的噪声类型和处理需求。
 :::
 
-## 关键代码方法实现
+## 关键方法的代码实现
 
 ### 获取定位点信息
 
 :::tip
-需要矫正的图片的长宽要和获取定位点的原图片的长宽一致，这样定位点的信息才是准确的。
+需要矫正的图片的长宽要和获取定位点的原图的长宽一致，这样定位点的信息才是准确的。
 :::
 
 ```java title="Scan.java"
@@ -68,8 +68,8 @@ public class Location {
   private static final List<Integer> K_SIZES = List.of(3, 5, 7, 9, 11, 13, 15);
 
   /**
-   * 获取定位点
-   *
+   * 获取定位点（多线程情况下获取定位点，OpenCV 可能会报错，可以多重试几次）
+   * 
    * @param sourceImage 图片文件
    * @param width 读取定位点原图的宽度
    * @param height 读取定位点原图的高度
