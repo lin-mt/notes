@@ -81,15 +81,15 @@ public enum RedisKey {
   private final long timeToLive;
   private final TimeUnit timeUnit;
 
-  RedisKey(String suffix, long timeToLive, TimeUnit timeUnit) {
-    if (StringUtils.isEmpty(suffix)) {
-      throw new IllegalArgumentException("key 的 format 不能为空");
+  RedisKey(String prefix, long timeToLive, TimeUnit timeUnit) {
+    if (StringUtils.isEmpty(prefix)) {
+      throw new IllegalArgumentException("key 的前缀不能为空");
     }
-    if (suffix.contains(FORMAT_SUFFIX)) {
+    if (prefix.contains(FORMAT_SUFFIX)) {
       throw new IllegalArgumentException("key 的 format 不能包含字符串 " + FORMAT_SUFFIX);
     }
     Objects.requireNonNull(timeUnit, "key 的过期时间单位不能为空");
-    this.format = suffix + FORMAT_SUFFIX;
+    this.format = prefix + FORMAT_SUFFIX;
     this.timeToLive = timeToLive;
     this.timeUnit = timeUnit;
   }
@@ -111,15 +111,15 @@ public enum RedisLock {
   private final long tryLockTime;
   private final TimeUnit tryLockTimeUnit;
 
-  RedisLock(String suffix, long tryLockTime, TimeUnit tryLockTimeUnit) {
-    if (StringUtils.isEmpty(suffix)) {
-      throw new IllegalArgumentException("lock 的 suffix 不能为空");
+  RedisLock(String prefix, long tryLockTime, TimeUnit tryLockTimeUnit) {
+    if (StringUtils.isEmpty(prefix)) {
+      throw new IllegalArgumentException("lock 的前缀不能为空");
     }
-    if (suffix.contains(FORMAT_SUFFIX)) {
-      throw new IllegalArgumentException("lock 的 suffix 不能包含字符串 " + FORMAT_SUFFIX);
+    if (prefix.contains(FORMAT_SUFFIX)) {
+      throw new IllegalArgumentException("lock 的 prefix 不能包含字符串 " + FORMAT_SUFFIX);
     }
     Objects.requireNonNull(tryLockTimeUnit, "lock 的过期时间单位不能为空");
-    this.format = suffix + FORMAT_SUFFIX;
+    this.format = prefix + FORMAT_SUFFIX;
     this.tryLockTime = tryLockTime;
     this.tryLockTimeUnit = tryLockTimeUnit;
   }

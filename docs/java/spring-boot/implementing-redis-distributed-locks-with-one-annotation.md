@@ -82,7 +82,7 @@ public class RedisLockAspect {
             joinPoint.getTarget(), method, joinPoint.getArgs(), parameterNameDiscoverer);
     // 注册方法，可以使用 #concatSuffix 调用 ConcatUtil 类中的 concat 方法
     context.registerFunction("concatSuffix", ConcatUtil.class.getMethod("concat", Object[].class));
-    // 注册 bean 的处理器，可以在 suffix 中调用 bean 的相关方法
+    // 注册 bean 的处理器，可以在 suffix 的 SpEL 中调用 bean 的相关方法
     context.setBeanResolver(new BeanFactoryResolver(applicationContext));
     return parser.parseExpression(spel).getValue(context, String.class);
   }
