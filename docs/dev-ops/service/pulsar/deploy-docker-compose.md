@@ -153,7 +153,7 @@ docker compose up -d
 
 3. 创建 Environment
 
-    ![](./create_environment.png)
+    ![](assets/deploy-docker-compose/create_environment.png)
 
 ## 卸载 Pulsar
 

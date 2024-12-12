@@ -10,7 +10,7 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Writing',
+    title: '',
     Svg: require('@site/static/img/programmer_writing_documentation.svg').default,
     description: (
       <>
