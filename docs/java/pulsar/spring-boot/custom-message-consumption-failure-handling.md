@@ -1,4 +1,4 @@
-# 在 SpringBoot 中自定义消息消费失败处理
+# 自定义消息消费失败处理
 
 ## 要解决的问题
 
@@ -31,9 +31,9 @@ class DeadLetterPolicyConfig {
 }
 ```
 
-由此可以发现，每一个 Topic 都需要定义一个 DeadLetterPolicy Bean，定义一个死信队列，然后在死信队列处理消息，这都是重复性代码。
+每一个 Topic 都需要定义一个 DeadLetterPolicy Bean，定义一个死信队列，然后在死信队列处理消息，这都是重复性流程。无法实现整个服务的所有消费者配置重试次数，
 
-如果不需要查看死信队列数据的情况下，可以借助 AOP 来解决这个问题。
+如果不需要查看死信队列数据的情况下，也不需要区分死信消息和正常消息，那么可以借助 AOP 来简化流程。
 
 ## 实现方案
 
@@ -88,6 +88,9 @@ public interface MessageConsumer<T> {
 @Component
 public class MessageConsumerAspect<T> {
 
+  /**
+   * 最少会重试消费一次，如果以 retryTime 为准，可调整改方法的逻辑
+   */
   @SuppressWarnings("unchecked")
   @Around("execution(* com.example..*MessageConsumer+.consume(..)) && target(messageConsumer)")
   public Object aroundPulsarListenerMethod(
@@ -148,7 +151,7 @@ public class TopicConsumer implements MessageConsumer<Long> {
     consumer.acknowledge(message);
   }
   
-  // 可自定义重试次数
+  // 每个消费者可自定义消息重试次数
   @Override
   public int retryTime() {
     return 6;
