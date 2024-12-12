@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Notes and blogs',
-  tagline: '',
+  tagline: 'Talk is cheap. Show me the code.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -76,56 +76,49 @@ const config: Config = {
       },
       items: [
         {
+          label: '开源项目',
+          position: 'right',
+          to: '/docs/open-source-project',
+        }, {
           label: 'Java',
           position: 'right',
-          items: [
-            {
-              label: 'Spring Boot',
-              type: 'docSidebar',
-              sidebarId: 'javaSpringBoot',
-            },
-            {
-              label: 'OpenCV',
-              type: 'docSidebar',
-              sidebarId: 'javaOpenCV',
-            },
-            {
-              label: 'Dubbo',
-              type: 'docSidebar',
-              sidebarId: 'javaDubbo',
-            },
-            {
-              label: 'Pulsar',
-              type: 'docSidebar',
-              sidebarId: 'javaPulsar',
-            }
-          ]
-        },
-        {
+          items: [{
+            label: 'Spring Boot',
+            type: 'docSidebar',
+            sidebarId: 'javaSpringBoot',
+          }, {
+            label: 'OpenCV',
+            type: 'docSidebar',
+            sidebarId: 'javaOpenCV',
+          }, {
+            label: 'Dubbo',
+            type: 'docSidebar',
+            sidebarId: 'javaDubbo',
+          }, {
+            label: 'Pulsar',
+            type: 'docSidebar',
+            sidebarId: 'javaPulsar',
+          }]
+        }, {
           label: 'DevOps',
           position: 'right',
-          items: [
-            {
-              label: 'Docker',
-              type: 'docSidebar',
-              sidebarId: 'devOpsDocker'
-            },
-            {
-              label: 'K8S',
-              type: 'docSidebar',
-              sidebarId: 'devOpsK8S'
-            },
-            {
-              label: 'Pulsar',
-              type: 'docSidebar',
-              sidebarId: 'devOpsPulsar'
-            },
-            {
-              label: 'Shell',
-              type: 'docSidebar',
-              sidebarId: 'devOpsShell'
-            }
-          ]
+          items: [{
+            label: 'Docker',
+            type: 'docSidebar',
+            sidebarId: 'devOpsDocker'
+          }, {
+            label: 'K8S',
+            type: 'docSidebar',
+            sidebarId: 'devOpsK8S'
+          }, {
+            label: 'Pulsar',
+            type: 'docSidebar',
+            sidebarId: 'devOpsPulsar'
+          }, {
+            label: 'Shell',
+            type: 'docSidebar',
+            sidebarId: 'devOpsShell'
+          }]
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
