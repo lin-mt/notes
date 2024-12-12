@@ -103,21 +103,25 @@ const config: Config = {
           label: 'DevOps',
           position: 'right',
           items: [{
-            label: 'Docker',
+            label: 'Shell',
+            type: 'doc',
+            docId: 'dev-ops/shell'
+          }, {
+            label: 'DevOps工具',
             type: 'docSidebar',
-            sidebarId: 'devOpsDocker'
+            sidebarId: 'devOpsTool'
           }, {
             label: 'K8S',
             type: 'docSidebar',
             sidebarId: 'devOpsK8S'
           }, {
-            label: 'Pulsar',
+            label: '服务部署',
             type: 'docSidebar',
-            sidebarId: 'devOpsPulsar'
+            sidebarId: 'devOpsService'
           }, {
-            label: 'Shell',
+            label: '持续集成',
             type: 'docSidebar',
-            sidebarId: 'devOpsShell'
+            sidebarId: 'devOpsCICD'
           }]
         },
         {to: '/blog', label: 'Blog', position: 'left'},

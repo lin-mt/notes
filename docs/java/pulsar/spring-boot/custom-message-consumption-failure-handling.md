@@ -163,4 +163,3 @@ public class TopicConsumer implements MessageConsumer<Long> {
   }
 }
 ```
-```
