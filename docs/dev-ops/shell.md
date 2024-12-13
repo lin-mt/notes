@@ -1,7 +1,13 @@
+---
+tags: [Shell, Docker]
+---
+
 # 常用 Shell 命令
 
 ## Docker
+
 ### 创建容器
+
 - MySQL
     ```shell copy
     docker run --name mysql -v mysql:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=KV753t0PpVmpjd2d -d mysql:8.0-debian

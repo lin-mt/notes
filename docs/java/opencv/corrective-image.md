@@ -1,3 +1,7 @@
+---
+tags: [Java, OpenCV]
+---
+
 # 使用 OpenCV 矫正图片
 
 在矫正图片之前需要先[加载 OpenCV 库](using-opencv-in-spring-boot.md)

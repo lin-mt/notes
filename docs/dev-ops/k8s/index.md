@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+tags: [K8S]
 ---
 
 # 简介

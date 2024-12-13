@@ -1,3 +1,7 @@
+---
+tags: [Java, OpenCV]
+---
+
 # 识别准考证号
 
 在识别准考证号之前需要先[加载 OpenCV 库](using-opencv-in-spring-boot.md)

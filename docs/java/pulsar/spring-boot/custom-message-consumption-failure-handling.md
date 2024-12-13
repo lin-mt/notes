@@ -1,3 +1,7 @@
+---
+tags: [Spring Boot, Pulsar, AOP]
+---
+
 # 自定义消息消费失败处理
 
 ## 要解决的问题

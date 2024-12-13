@@ -1,6 +1,8 @@
-# 借助 Redisson 访问 Redis
+---
+tags: [Spring Boot, Redis, Redisson]
+---
 
-## 简介
+# 借助 Redisson 访问 Redis
 
 Redisson是redis官方推荐的访问redis的工具。
 
