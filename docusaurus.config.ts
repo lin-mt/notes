@@ -79,7 +79,7 @@ const config: Config = {
         {
           label: '开源',
           type: 'docSidebar',
-          position: 'left',
+          position: 'right',
           sidebarId: 'openSource',
         }, {
           label: 'Java',
