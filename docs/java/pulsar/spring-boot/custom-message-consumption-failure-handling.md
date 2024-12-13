@@ -89,7 +89,7 @@ public interface MessageConsumer<T> {
 public class MessageConsumerAspect<T> {
 
   /**
-   * 最少会重试消费一次，如果以 retryTime 为准，可调整改方法的逻辑
+   * 最少会重试消费一次，如果以 retryTime 为准，可调整该方法的逻辑
    */
   @SuppressWarnings("unchecked")
   @Around("execution(* com.example..*MessageConsumer+.consume(..)) && target(messageConsumer)")

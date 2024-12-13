@@ -233,6 +233,12 @@ install -m 755 linux-amd64/helm  /usr/local/bin/helm
 helm list
 ```
 
+## 问题及解决方案
+
+### 拉取的私有库没有https证书
+
+> https://docs.rke2.io/install/containerd_registry_configuration
+
 ## 参考
 
 [Ubuntu系统离线安装RKE2+Rancher2.7.5全过程记录](https://blog.csdn.net/u010438035/article/details/131684587)

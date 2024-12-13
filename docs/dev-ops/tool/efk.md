@@ -1,8 +1,4 @@
----
-sidebar_position: 2
----
-
-# Docker 部署 EFK
+# EFK
 
 ## Spring Boot日志配置
 
