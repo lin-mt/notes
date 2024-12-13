@@ -3,6 +3,8 @@
 ## 介绍
 Rancher 是一个 Kubernetes 管理工具，让我们能在任何地方和任何提供商上部署和运行集群。
 
+官网：https://ranchermanager.docs.rancher.com/
+
 ## 准备
 一个安装了 Helm 的 Kubernetes 集群，集群版本要跟安装的 Rancher 版本兼容，具体可以查询：https://www.suse.com/suse-rancher/support-matrix/all-supported-versions 或者查看[Github Release](https://github.com/rancher/rancher/releases)。
 
@@ -90,12 +92,42 @@ New password for default administrator (user-xxxxx):
 
 Kubernetes 安装 (Helm):
 ```shell
+# 修改过 k8s 的配置文件位置
 $ KUBECONFIG=./kube_config_cluster.yml
 $ kubectl --kubeconfig $KUBECONFIG -n cattle-system exec $(kubectl --kubeconfig $KUBECONFIG -n cattle-system get pods -l app=rancher --no-headers | head -1 | awk '{ print $1 }') -c rancher -- reset-password
 New password for default administrator (user-xxxxx):
 <new_password>
+
+# 没修改过可以直接执行
+kubectl -n cattle-system exec $(kubectl -n cattle-system get pods -l app=rancher --no-headers | head -1 | awk '{ print $1 }') -c rancher -- reset-password
 ```
 
+## 问题及解决方法
+
+### 无法拉取镜像
+
+安装完后 Rancher 的部分组件镜像可能由于 Docker 被墙，无法拉取，可以使用 [Harbor](../../tool/harbor.md) 搭建私有库，将需要的镜像推到私有库。
+
+### 私有库没有https证书
+
+在配置文件 `/etc/rancher/rke2/registries.yaml` 中配置忽略 tls
+
+> https://docs.rke2.io/install/containerd_registry_configuration
+
+```yaml
+mirrors:
+  harbor.domain.cn:
+    endpoint:
+      - "https://harbor.domain.cn"
+  docker.io:
+    endpoint:
+      - "https://harbor.domain.cn"
+configs:
+  "harbor.domain.cn":
+    tls:
+      # 跳过 tls
+      insecure_skip_verify: true
+```
 
 ## 参考
 
