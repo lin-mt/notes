@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+tags: [K8S, Debian 12]
 ---
 
 # Debian 12 部署 k8s

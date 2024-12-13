@@ -1,3 +1,7 @@
+---
+tags: [GitLab]
+---
+
 # GitLab
 
 安装：https://packages.gitlab.com/gitlab/gitlab-ce/install

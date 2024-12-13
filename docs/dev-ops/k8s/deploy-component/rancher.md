@@ -1,3 +1,7 @@
+---
+tags: [K8S, Rancher]
+---
+
 # Rancher
 
 ## 介绍

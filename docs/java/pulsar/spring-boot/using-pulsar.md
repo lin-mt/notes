@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+tags: [Pulsar, Spring Boot]
 ---
 
 # 使用 Pulsar

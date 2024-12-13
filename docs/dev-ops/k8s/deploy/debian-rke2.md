@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+tags: [K8S, Debian 12, RKE2]
 ---
 
 # Debian 12 使用 RKE2 离线部署 k8s

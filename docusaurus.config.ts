@@ -75,10 +75,12 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
+        {label: 'Blog', position: 'left', to: '/blog'},
         {
-          label: '开源项目',
-          position: 'right',
-          to: '/docs/open-source-project',
+          label: '开源',
+          type: 'docSidebar',
+          position: 'left',
+          sidebarId: 'openSource',
         }, {
           label: 'Java',
           position: 'right',
@@ -124,7 +126,6 @@ const config: Config = {
             sidebarId: 'devOpsCICD'
           }]
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/lin-mt/notes',
           position: 'right',

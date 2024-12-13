@@ -1,3 +1,7 @@
+---
+tags: [Pulsar, Security, JWT]
+---
+
 # 使用 JWT 进行身份验证
 
 Pulsar 支持使用 JSON WEB TOKEN 进行身份验证。

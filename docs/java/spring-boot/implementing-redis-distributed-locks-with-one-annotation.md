@@ -1,3 +1,7 @@
+---
+tags: [Spring Boot, Redis, Redisson]
+---
+
 # 一个注解实现Redis分布式锁
 
 借助 [Redisson](access-redis-with-redisson.md) 简化实现分布式锁。

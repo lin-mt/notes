@@ -1,3 +1,7 @@
+---
+tags: [Java, OpenCV]
+---
+
 # 识别选择题
 
 在识别选择题前需要先[加载 OpenCV 库](using-opencv-in-spring-boot.md)
