@@ -75,7 +75,7 @@ public static class RectCalculate {
     Mat edges = new Mat();
     Imgproc.Canny(gray, edges, 50, 150, 5, false);
     Mat lines = new Mat();
-    Imgproc.HoughLinesP(edges, lines, 1, Math.PI / 180, 100, 50, 10);
+    Imgproc.HoughLinesP(edges, lines, 1, Math.PI / 180, 100, src.rows() * 0.85, 6);
     Mat mask = Mat.zeros(src.size(), CvType.CV_8UC1);
     // 去掉图片中的竖线，避免竖线对识别填涂区域的影响
     for (int i = 0; i < lines.rows(); i++) {
@@ -83,10 +83,7 @@ public static class RectCalculate {
       Point pt1 = new Point(line[0], line[1]);
       Point pt2 = new Point(line[2], line[3]);
       double height = Math.abs(pt1.y - pt2.y);
-      // 竖线高度大于 160 则是竖线
-      if (height > 160) {
-        Imgproc.line(mask, pt1, pt2, new Scalar(255), 3);
-      }
+      Imgproc.line(mask, pt1, pt2, new Scalar(255), 3);
     }
     src.setTo(new Scalar(255, 255, 255), mask);
     Imgproc.cvtColor(src, src, Imgproc.COLOR_BGR2GRAY);
