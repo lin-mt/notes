@@ -120,10 +120,6 @@ const config: Config = {
             label: '服务部署',
             type: 'docSidebar',
             sidebarId: 'devOpsService'
-          }, {
-            label: '持续集成',
-            type: 'docSidebar',
-            sidebarId: 'devOpsCICD'
           }]
         },
         {
