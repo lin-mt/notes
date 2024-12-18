@@ -47,5 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}
         id: deployment
         uses: actions/deploy-pages@v4
