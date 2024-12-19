@@ -344,7 +344,7 @@ public static class RectCalculate {
   /**
    * 识别准考证号
    * @param count 准考证号位数
-   * @param finalImage 准考证号图片
+   * @param image 准考证号图片
    * @return 准考证号
    */
   @SneakyThrows
