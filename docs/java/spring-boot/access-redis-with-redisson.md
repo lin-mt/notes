@@ -135,38 +135,53 @@ public enum RedisLock {
 ## 封装 RedissonClient
 
 ```java
+/**
+ * @author lin-mt
+ */
 @Component
 @RequiredArgsConstructor
 public class RedissonTemplate {
 
   private final RedissonClient redissonClient;
 
-  private static <S> String getKeyName(RedisKey key, S suffix) {
+  private <S> String getKeyName(RedisKey key, S suffix) {
     Objects.requireNonNull(suffix, "key 的后缀不能为空");
     return key.getKeyName(suffix);
   }
 
-  public <S> void lock(RedisLock lock, S suffix, Runnable runnable) throws InterruptedException {
-    RLock rLock = redissonClient.getLock(lock.getLockName(suffix));
+  private void runTask(RedisLock lock, Runnable runnable, RLock rLock) throws InterruptedException {
     try {
-      if (rLock.tryLock(lock.getTryLockTime(), lock.getTryLockTimeUnit())) {
+      if (rLock.tryLock(lock.getLockTime(), lock.getTimeUnit())) {
         runnable.run();
       }
-    } catch (Exception e) {
-      if (e instanceof InterruptedException) {
-        throw e;
-      }
-      throw new RuntimeException(e);
     } finally {
       rLock.unlock();
     }
+  }
+
+  @SneakyThrows
+  public <S> void readLock(RedisLock lock, S suffix, Runnable runnable) {
+    RLock rLock = redissonClient.getReadWriteLock(lock.getLockName(suffix)).readLock();
+    runTask(lock, runnable, rLock);
+  }
+
+  @SneakyThrows
+  public <S> void writeLock(RedisLock lock, S suffix, Runnable runnable) {
+    RLock rLock = redissonClient.getReadWriteLock(lock.getLockName(suffix)).writeLock();
+    runTask(lock, runnable, rLock);
+  }
+
+  @SneakyThrows
+  public <S> void lock(RedisLock lock, S suffix, Runnable runnable) {
+    RLock rLock = redissonClient.getLock(lock.getLockName(suffix));
+    runTask(lock, runnable, rLock);
   }
 
   public <S> void lock(
       RedisLock lock, S suffix, Runnable runnable, Consumer<Exception> exceptionConsumer) {
     RLock rLock = redissonClient.getLock(lock.getLockName(suffix));
     try {
-      if (rLock.tryLock(lock.getTryLockTime(), lock.getTryLockTimeUnit())) {
+      if (rLock.tryLock(lock.getLockTime(), lock.getTimeUnit())) {
         runnable.run();
       }
     } catch (Exception e) {
@@ -181,15 +196,31 @@ public class RedissonTemplate {
   }
 
   public <T, S> void setBucket(RedisKey key, S suffix, T value) {
+    setBucket(key, suffix, value, null);
+  }
+
+  public <T, S> void setBucket(RedisKey key, S suffix, T value, Duration duration) {
     String name = getKeyName(key, suffix);
     RBucket<T> rBucket = redissonClient.getBucket(name);
-    rBucket.set(value, key.getTimeToLive(), key.getTimeUnit());
+    long timeToLive = key.getTimeToLive();
+    TimeUnit timeUnit = key.getTimeUnit();
+    if (duration != null) {
+      timeToLive = duration.toSeconds();
+      timeUnit = TimeUnit.SECONDS;
+    }
+    rBucket.set(value, timeToLive, timeUnit);
   }
 
   public <T, S> T getBucket(RedisKey key, S suffix) {
     String name = getKeyName(key, suffix);
     RBucket<T> rBucket = redissonClient.getBucket(name);
     return rBucket.get();
+  }
+
+  public <S> boolean deleteBucket(RedisKey key, S suffix) {
+    String name = getKeyName(key, suffix);
+    RBucket<?> rBucket = redissonClient.getBucket(name);
+    return rBucket.delete();
   }
 
   public <K, V, S> void setMap(RedisKey key, S suffix, Map<K, V> value) {
@@ -220,6 +251,12 @@ public class RedissonTemplate {
       case HOURS -> ChronoUnit.HOURS;
       case DAYS -> ChronoUnit.DAYS;
     };
+  }
+
+  public <T> T getAndDeleteBucket(RedisKey key, String suffix) {
+    String name = getKeyName(key, suffix);
+    RBucket<T> rBucket = redissonClient.getBucket(name);
+    return rBucket.getAndDelete();
   }
 }
 ```
