@@ -224,7 +224,6 @@ public class RedissonTemplate {
   }
 
   public <K, V, S> void setMap(RedisKey key, S suffix, Map<K, V> value) {
-    Objects.requireNonNull(suffix, "key 的后缀不能为空");
     String name = getKeyName(key, suffix);
     RMap<K, V> rMap = redissonClient.getMap(name);
     if (value != null) {

@@ -45,6 +45,30 @@ public @interface Lock {
 }
 ```
 
+```java
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ReadLock {
+  /** redis 锁 */
+  RedisLock lock();
+
+  /** redis 锁的 key 后缀 */
+  String prefix();
+}
+```
+
+```java
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface WriteLock {
+  /** redis 锁 */
+  RedisLock lock();
+
+  /** redis 锁的 key 后缀 */
+  String prefix();
+}
+```
+
 ### 定义 AOP 切面
 
 ```java
@@ -53,20 +77,59 @@ public @interface Lock {
 @Component
 @RequiredArgsConstructor
 public class RedisLockAspect {
-  private final ApplicationContext applicationContext;
   private final SpelExpressionParser parser = new SpelExpressionParser();
   private final ParameterNameDiscoverer parameterNameDiscoverer =
       new DefaultParameterNameDiscoverer();
+
+  private final ApplicationContext applicationContext;
   private final RedissonTemplate redissonTemplate;
 
   @Around("@annotation(lock)")
   public Object lock(ProceedingJoinPoint joinPoint, Lock lock) throws Throwable {
     RedisLock redisLock = lock.lock();
-    String suffix = parseSpel(lock.suffix(), joinPoint);
+    String prefix = parseSpel(lock.prefix(), joinPoint);
     AtomicReference<Object> result = new AtomicReference<>();
     redissonTemplate.lock(
         redisLock,
-        suffix,
+        prefix,
+        () -> {
+          try {
+            Object proceed = joinPoint.proceed();
+            result.set(proceed);
+          } catch (Throwable e) {
+            throw new RuntimeException(e);
+          }
+        });
+    return result.get();
+  }
+
+  @Around("@annotation(readLock)")
+  public Object readLock(ProceedingJoinPoint joinPoint, ReadLock readLock) throws Throwable {
+    RedisLock redisLock = readLock.lock();
+    String prefix = parseSpel(readLock.prefix(), joinPoint);
+    AtomicReference<Object> result = new AtomicReference<>();
+    redissonTemplate.readLock(
+        redisLock,
+        prefix,
+        () -> {
+          try {
+            Object proceed = joinPoint.proceed();
+            result.set(proceed);
+          } catch (Throwable e) {
+            throw new RuntimeException(e);
+          }
+        });
+    return result.get();
+  }
+
+  @Around("@annotation(writeLock)")
+  public Object readLock(ProceedingJoinPoint joinPoint, WriteLock writeLock) throws Throwable {
+    RedisLock redisLock = writeLock.lock();
+    String prefix = parseSpel(writeLock.prefix(), joinPoint);
+    AtomicReference<Object> result = new AtomicReference<>();
+    redissonTemplate.writeLock(
+        redisLock,
+        prefix,
         () -> {
           try {
             Object proceed = joinPoint.proceed();
