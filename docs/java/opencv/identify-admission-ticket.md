@@ -196,7 +196,17 @@ public static class RectCalculate {
               avgX += rect.x;
             }
             avgX = avgX / rectList.size();
-            for (int i = 0; i < rectList.size(); i++) {
+            for (int i = 0; i < 10; i++) {
+              if (i == rectList.size() && rectList.size() < 10) {
+                Rect newRect = new Rect();
+                newRect.x = avgX;
+                newRect.y = preRect.y + finalAllDifferenceY;
+                newRect.width = (int) calculate.widthAvg;
+                newRect.height = (int) calculate.heightAvg;
+                rectList.add(i, newRect);
+                preRect = newRect;
+                continue;
+              }
               Rect rect = rectList.get(i);
               if (preRect == null) {
                 if (Math.abs(rect.y - finalAvgMinY) < 5) {
