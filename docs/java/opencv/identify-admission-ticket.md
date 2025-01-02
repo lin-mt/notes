@@ -197,15 +197,19 @@ public static class RectCalculate {
             }
             avgX = avgX / rectList.size();
             for (int i = 0; i < 10; i++) {
-              if (i == rectList.size() && rectList.size() < 10) {
+              if (i == rectList.size() && preRect.y + finalAllDifferenceY <= src.rows()) {
                 Rect newRect = new Rect();
                 newRect.x = avgX;
                 newRect.y = preRect.y + finalAllDifferenceY;
                 newRect.width = (int) calculate.widthAvg;
                 newRect.height = (int) calculate.heightAvg;
-                rectList.add(i, newRect);
                 preRect = newRect;
+                rectList.add(i, newRect);
                 continue;
+              }
+              if (i == rectList.size()) {
+                log.error("准考证号填涂区域无法填充");
+                break;
               }
               Rect rect = rectList.get(i);
               if (preRect == null) {
