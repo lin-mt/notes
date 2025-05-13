@@ -100,6 +100,10 @@ const config: Config = {
             label: 'Pulsar',
             type: 'docSidebar',
             sidebarId: 'javaPulsar',
+          }, {
+            label: 'RocketMQ',
+            type: 'docSidebar',
+            sidebarId: 'javaRocketMQ',
           }]
         }, {
           label: 'DevOps',
